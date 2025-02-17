@@ -1,0 +1,42 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: linear-gradient();
+}
+body{
+  background: linear-gradient(to right, #141e30, #243b55);
+  display: flex;
+  justify-content: center;
+}
+.container{
+  background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+  height: 150px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.quote-container{
+  display: flex;
+  flex-direction: column;
+}
+button{
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 210px;
+  left: 50%;
+  outline: none;
+  border: none;
+}
+button:hover{
+  background: #39597e;
+  border: none;
+  outline: none;
+}
+h2{
+  position:relative;
+}
+h3{
+  position: absolute;
+  left: 640px;
+  margin-top: 10px;
+}
