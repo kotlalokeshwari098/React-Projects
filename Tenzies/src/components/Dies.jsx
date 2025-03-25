@@ -2,7 +2,9 @@ import '../App.css';
 
 export default function Dies(prop){
     return(
-        <button style={{ backgroundColor: prop.isHeld ? "#59E391" : "red" }} onClick={prop.holds} >{prop.value}
+        <button style={{ backgroundColor: prop.isHeld ? "#59E391" : "red" }}
+        aria-label={`Die with value ${prop.value} , ${prop.isHeld ? "held" : "not held"}`} 
+        onClick={prop.holds} >{prop.value}
         </button>
     )
 }
