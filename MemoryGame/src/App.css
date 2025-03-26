@@ -7,4 +7,40 @@
   border: 15px solid black;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cards{
+  border: 2px solid green;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(4,1fr);
+  gap: 5px;
+}
+.card-container{
+  /* border: 5px solid red; */
+  width: 100px;
+  height: 100px;
+}
+button{
+  cursor: pointer;
+  font-size: 30px;
+}
+.hiddenCard{
+   background: black;
+   filter: brightness(0);
+}
+.showCard{
+  background: white;
+  filter: brightness(1);
+}
+.main-button{
+  margin-top: 20px;
+  padding: 2px 28px;
+  color: white;
+  background: #000;
+  border-radius: 5px;
+  font-size: 30px;
 }
