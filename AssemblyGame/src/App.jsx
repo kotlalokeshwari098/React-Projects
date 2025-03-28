@@ -1,21 +1,42 @@
 import Header from "./components/Header";
 import { languages } from "./language";
 import React from "react";
+import clsx from "clsx";
 
 export default function App() {
-  const [currentWord,setCurrentWord]=React.useState('react')
 
+  // state values
+  const [currentWord,setCurrentWord]=React.useState('react');
+  const [guessLetter,setGuessLetter]=React.useState([]);
+  
+
+  
+  // derive from state 
+  let wrongGuessCount=
+        guessLetter.filter(letter => !currentWord.includes(letter)).length;
+  
+  const isGameWon=
+      currentWord.split('').every(letter =>guessLetter.includes(letter));
+  const isGameLost=wrongGuessCount >-languages.length-1;
+  const isGameOver=isGameWon || isGameLost;
+  
+  
+  // static values
   const alphabets='abcdefghijklmnopqrstuvwxyz'
+  
+  
 
   // languages depends on user guessing to kill or save
   const language =
-    languages.map((item) =>{
+    languages.map((item,index) =>{
       const styles={
         backgroundColor:item.backgroundColor,color:item.color
       }
+      const className=clsx({lost:index<wrongGuessCount,won:index>wrongGuessCount})
      return (
      <span 
-      style={styles}
+     style={styles}
+      className={className}
       key={item.name}
       >{item.name}
       </span>)
@@ -24,22 +45,57 @@ export default function App() {
 
     // letters user guess
   const letters=currentWord.split('').map((letter,index)=>{
+    const isGuessed =guessLetter.includes(letter);
+    const isCorrect=isGuessed && currentWord.includes(letter)
+    const isWrong=isGuessed && !currentWord.includes(letter)
+    const className=clsx('letter-box',
+      {
+      show:isCorrect,
+      notShow:isWrong
+    })
     return( 
     <span 
-    className="letter-box"
+    
+    className={className}
     key={index}
+    
     >{letter.toUpperCase()}</span>
   )
 })
 
-  let alphabetsLetters=alphabets.split('')
-  let displayAlphabets=alphabetsLetters.map((letter)=>{
+let alphabetsLetters=alphabets.split('').map((letter)=>{
+    const isGuessed =guessLetter.includes(letter);
+    const isCorrect=isGuessed && currentWord.includes(letter)
+    const isWrong=isGuessed && !currentWord.includes(letter)
+    const className=clsx('letters-button',
+      {
+      correct:isCorrect,
+      wrong:isWrong
+    })
+
     return (
-      <button key={letter}>{letter}</button>
+      <button 
+      onClick={()=>storeGuessedLetters(letter)}
+      className={className}
+      key={letter}>{letter.toUpperCase()}</button>
     )
   })
-  console.log(displayAlphabets)
-      
+  // console.log(className)
+
+  // user gussed letter storing in array and checking
+  function storeGuessedLetters(letter){
+    // console.log('hello')
+    
+    setGuessLetter(prev => {
+      // prev.includes(letter) ? prev :[...prev,letter])
+      // or
+      const letterSet=new Set(prev)
+      letterSet.add(letter);
+      return Array.from(letterSet)
+    })
+  }
+  console.log(guessLetter)
+
 
 
   return (
@@ -59,9 +115,12 @@ export default function App() {
       <section className="letter-blocks">
         {letters}
       </section>
-      <main>
-         {displayAlphabets}
+      <main >
+         {alphabetsLetters}
       </main>
+     {isGameOver && <button className="decide-button">
+         New Game
+      </button>}
     </div>
   )
 }
