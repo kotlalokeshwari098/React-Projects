@@ -41,11 +41,46 @@ header > p{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: #10A95B;
+  background: #262626;
  color: #F9F4DA;
   border-radius: 5px;
 }
-.game-status div:nth-child(1){
+.game-status1{
+  /* border: 2px solid red; */
+  width: 400px;
+  height: 70px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: purple;
+ color: #F9F4DA;
+  border-radius: 5px;
+}
+.win-status{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+ background: #10A95B;
+ transition: 0.3s ;
+}
+.win-status div:nth-child(1) {
+  font-size: 22px;
+}
+.lost-status{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+ background:  #BA2A2A;
+}
+.lost-status div:nth-child(1) {
   font-size: 22px;
 }
 .languageChips{
@@ -121,6 +156,10 @@ main{
   width: 450px;
   gap: 4px;
 }
+main button:disabled{
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 .letters-button{
  width: 40px;
  height: 40px;
@@ -140,11 +179,24 @@ main{
     border:  1px solid #D7D7D7;
     margin-inline: auto;
     cursor: pointer;
+
 }
 .correct{
   background-color: #10A95B;
 }
 .wrong{
   background: #EC5D49 ;
+  
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
