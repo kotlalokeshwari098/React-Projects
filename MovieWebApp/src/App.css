@@ -30,15 +30,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
-.nav-links ul{
-  display: flex;
-  list-style: none;
-  gap: 30px;
 
-}
 .nav-links a{
   color: black;
+  text-decoration: none;
 
 }
 .nav-profile img{
