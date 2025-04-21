@@ -4,8 +4,8 @@ function App() {
    const [length,setLength]=React.useState(0)
    const [numberAllowed,setNumberAllowed]=React.useState(false);
    const [characterAllowed,setCharacterAllowed]=React.useState(false);
-  const [data,setData]=React.useState('')
-  const [password,setPassword]=React.useState('')
+  //  const [data,setData]=React.useState('')
+   const [password,setPassword]=React.useState('')
   
   // useRef
   const passwordRef=useRef(null);
@@ -13,8 +13,8 @@ function App() {
 
   const generatePassword = useCallback(()=>{
         let str='';
-       let alphabets='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-       let numbers='0123456789'
+        let alphabets='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        let numbers='0123456789'
 
        if(numberAllowed) str+=numbers
        if(characterAllowed) str+='!@#$%^&*()~.,/'

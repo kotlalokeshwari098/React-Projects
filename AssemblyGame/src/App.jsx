@@ -10,7 +10,8 @@ export default function App() {
   // state values
   const [currentWord,setCurrentWord]=React.useState(()=>getRandomWord());
   let [guessLetter,setGuessLetter]=React.useState([]);
-  console.log(currentWord)
+  // console.log(currentWord)
+  // console.log(guessLetter)
 
   
 
@@ -36,7 +37,7 @@ export default function App() {
       const styles={
         backgroundColor:item.backgroundColor,color:item.color
       }
-      const className=clsx({lost:index<wrongGuessCount,won:index>wrongGuessCount})
+      const className=clsx({lost:index < wrongGuessCount,won:index>wrongGuessCount})
      return (
      <span 
      style={styles}
@@ -47,17 +48,20 @@ export default function App() {
     })
 
 
+
     // letters user guess
   const letters=currentWord.split('').map((letter,index)=>{
     const isGuessed =guessLetter.includes(letter);
+    // console.log(isGuessed)
     const isCorrect=isGuessed && currentWord.includes(letter)
     const isWrong=isGuessed && !currentWord.includes(letter)
     let shouldRevelLetter=isGameLost || isGuessed
-    console.log(shouldRevelLetter)
+    // console.log(shouldRevelLetter)
     const className=clsx('letter-box',
       {
       show:isCorrect,
-      notShow:isWrong
+      notShow:isWrong,
+      
     })
     return( 
     <span 
@@ -68,6 +72,8 @@ export default function App() {
     >{shouldRevelLetter ? letter.toUpperCase():''}</span>
   )
 })
+
+
 
 let alphabetsLetters=alphabets.split('').map((letter)=>{
     const isGuessed =guessLetter.includes(letter);
@@ -119,7 +125,11 @@ let alphabetsLetters=alphabets.split('').map((letter)=>{
 
 
   return (
-    <div className="container">
+    <>
+    <div className="score-card">
+
+    </div>
+     <div className="container">
       <header>
         <h2>Assembly:Endgame</h2>
         <p>Guess the word in under 8 attempt to keep the programming world safe from Assembly!</p>
@@ -174,5 +184,7 @@ let alphabetsLetters=alphabets.split('').map((letter)=>{
          New Game
       </button>}
     </div>
+    </>
+   
   )
 }
